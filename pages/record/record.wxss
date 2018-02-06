@@ -1,0 +1,23 @@
+.record-container {
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.record-btn {
+  margin-top: 100rpx;
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.start {
+  background-color: blue;
+}
+
+.stop {
+  background-color: red;
+}

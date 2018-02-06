@@ -1,0 +1,6 @@
+<!-- i, j, result-->
+<template name="iam-template"> <!-- 不能用数据绑定 -->
+  <view style="margin-top: 10px; text-align: center;">
+    <text> {{i}} * {{j}} = {{result}} </text>
+  </view>
+</template>

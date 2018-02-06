@@ -1,0 +1,22 @@
+<!--index.wxml-->
+
+<import src="/modules/template/simple.wxml" />
+
+<view class="loading" wx-if="{{condition.loading}}">
+  加载中...
+</view>
+<view class="container" style="background-color: {{bgc}}">
+  <include src="/partials/user_info.wxml" />
+
+  <!-- 列表渲染 & 模板渲染 -->
+  <view style="margin-top: 30px;">
+    <text>九九乘法表</text>
+    <block wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i">
+      <block wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="j">
+        <block wx:if="{{i <= j}}">
+          <template is="{{template_name}}" data="{{i, j, result: i * j}}"/>
+        </block>
+      </block>
+    </block>
+  </view>
+</view>

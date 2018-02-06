@@ -1,0 +1,30 @@
+{
+  "pages":[
+    "pages/picture/picture",
+    "pages/record/record",
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#17B1F7",
+    "navigationBarTitleText": "Mango",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#17B1F7",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/record/record",
+      "text": "记录"
+    },{
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    },{
+      "pagePath": "pages/picture/picture",
+      "text": "你画我猜"
+    }]
+  }
+}

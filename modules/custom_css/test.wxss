@@ -1,0 +1,10 @@
+.userinfo-nickname {
+  color: #aaa;
+  /*background-color: red;*/
+  width: 100vw;
+  text-align: center;
+}
+
+.usermotto {
+  margin-top: 50px;
+}

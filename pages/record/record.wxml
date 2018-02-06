@@ -1,0 +1,12 @@
+<view class="record-container">
+  <view wx:if="{{status === 'recording'}}">
+    <text>
+      {{ record_text }}
+    </text>
+    <view class="record-btn start" bind:tap="stop_record">
+    </view>
+  </view>
+  <view wx:else class="record-btn stop" bind:tap="start_record">
+    开始
+  </view>
+</view>
