@@ -1,4 +1,4 @@
-const HOST = "http://localhost:3001/weixin/"
+const HOST = "http://localhost:3001/weixin/" //"http://love-mango.com/weixin/"
 Page({
   data: {
     logs: [],
@@ -24,21 +24,25 @@ Page({
         this.setData({
           isInitialized: true,
           isRecording: data.is_recording,
-          currentSlot: data.current_slot,
+          currentSlot: this.prepareTimeSlot(data.current_slot),
         })
+        this.setRecordingSecond()
       }
     })
     setInterval(() => {
-      if (this.data.isRecording) {
-        let seconds = Math.floor((Date.now() - Date.parse(this.data.currentSlot.started_at)) / 1000)
-        let hour = Math.floor(seconds / 3600)
-        let minute = Math.floor(seconds % 3600 / 60)
-        let second = seconds % 60
-        this.setData({
-          recordingTime: `${hour}:${minute}:${second}`
-        })
-      }
+      this.setRecordingSecond()
     }, 1000)
+  },
+  setRecordingSecond () {
+    if (this.data.isRecording) {
+      let seconds = Math.ceil(Date.now() / 1000) - Math.ceil(this.data.currentSlot.localTime / 1000) + this.data.currentSlot.current_duration
+      let hour = Math.floor(seconds / 3600)
+      let minute = Math.floor(seconds % 3600 / 60)
+      let second = seconds % 60
+      this.setData({
+        recordingTime: `${hour}:${minute}:${second}`
+      })
+    }
   },
   selectSlotType (e) {
     let type = e.currentTarget.dataset.slotType
@@ -57,8 +61,9 @@ Page({
       success: ({data}) => {
         this.setData({
           isRecording: true,
-          currentSlot: data.current_slot
+          currentSlot: this.prepareTimeSlot(data.current_slot)
         })
+        this.setRecordingSecond()
       }
     })
   },
@@ -83,6 +88,12 @@ Page({
       logs: new_logs,
       lastLogId: "log-" + (new_logs.length - 1)
     })
+  },
+  prepareTimeSlot (timeslot) {
+    return timeslot ? {
+      localTime: Date.now(),
+      ...timeslot
+    } : null
   },
   sendRequest(options) {
     options.url = HOST + options.url

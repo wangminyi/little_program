@@ -1,12 +1,34 @@
-<view class="record-container">
-  <view wx:if="{{status === 'recording'}}">
-    <text>
-      {{ record_text }}
-    </text>
-    <view class="record-btn start" bind:tap="stop_record">
+<view class="body-panel">
+  <view class="idle-container" wx:if="{{!isRecording}}">
+    <view class="slot-type-option-container">
+      <view
+        wx:for="{{slotTypeOptions}}"
+        wx:key="{{index}}"
+        data-slot-type="{{item[1]}}"
+        class="{{['slot-type-option', item[1] === selectedSlotType ? 'selected' : '']}}"
+        bind:tap="selectSlotType"
+      >
+        {{item[0]}}
+      </view>
     </view>
+    <button class="record-btn" bind:tap="startRecording">
+      开始计时
+    </button>
   </view>
-  <view wx:else class="record-btn stop" bind:tap="start_record">
-    开始
+  <view class="recording-container" wx:else>
+    <view>
+      {{ slotTypeText[currentSlot.slot_type] }}中
+    </view>
+    <text>
+      {{ recordingTime }}
+    </text>
+    <button class="record-btn" bind:tap="stopRecording">
+      停止计时
+    </button>
   </view>
 </view>
+<scroll-view class="footer-panel" scroll-y scroll-into-view="{{lastLogId}}">
+  <view wx:for="{{logs}}" wx:key="index" id="{{'log-' + index}}" >
+    {{ item }}
+  </view>
+</scroll-view>

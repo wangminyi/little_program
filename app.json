@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/picture/picture",
     "pages/record/record",
+    "pages/picture/picture",
     "pages/index/index"
   ],
   "window":{
